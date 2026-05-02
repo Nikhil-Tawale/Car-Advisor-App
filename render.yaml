@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: car-advisor-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+  - type: static
+    name: car-advisor-frontend
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
