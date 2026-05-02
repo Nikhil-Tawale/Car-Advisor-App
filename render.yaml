@@ -1,27 +1,12 @@
 services:
   - type: web
-    name: car-advisor-backend
+    name: car-advisor-app
     runtime: node
-    repo: https://github.com/your-username/car-advisor
-    branch: main
-    rootDir: backend
+    rootDir: .
     buildCommand: npm install && npm run build
     startCommand: npm run start
     envVars:
       - key: PORT
         value: 10000
-
-  - type: static
-    name: car-advisor-frontend
-    repo: https://github.com/your-username/car-advisor
-    branch: main
-    rootDir: frontend
-    buildCommand: npm run build
-    staticPublishPath: ./dist
-    envVars:
-      - key: VITE_API_URL
-        value: https://car-advisor-backend.onrender.com/api
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
+      - key: NODE_ENV
+        value: production
