@@ -1,7 +1,7 @@
 # Car Advisor – Full‑stack Car Shortlister
 
-**Live URL:** [https://car-advisor-frontend.vercel.app](https://car-advisor-frontend.vercel.app)  
-**Backend API:** [https://car-advisor-backend.onrender.com/api/shortlist](https://car-advisor-backend.onrender.com/api/shortlist)  
+**Live URL (Render – single service):** [https://car-advisor-app.onrender.com](https://car-advisor-app.onrender.com)  
+**Backend API:** same URL + `/api/shortlist`  
 **Screen Recording:** *Not recorded*
 
 ---
@@ -30,7 +30,7 @@ Forcing a priority (safety/mileage/boot) cuts through the noise and gives confid
 | Backend   | Node.js + Hapi        | Lightweight, async, easy scoring logic. Hapi gives built‑in validation. |
 | Scoring   | Custom algorithm      | Weights budget (40), fuel (20), usage (20), priority (20) → /100.  |
 | Logging   | JSONL file            | Non‑trivial persistence (meets “full‑stack” requirement).           |
-| Deployment| Vercel (frontend) + Render (backend) | Free tier, automatic HTTPS, no Docker needed.          |
+| Deployment| Render (single web service) | Free tier, one `render.yaml` blueprint, serves both API + frontend. |
 
 ## What did you delegate to AI vs. do manually?
 
@@ -57,15 +57,14 @@ Forcing a priority (safety/mileage/boot) cuts through the noise and gives confid
 
 ## Screen Recording Note
 
-The assignment requested a screen recording, but I did **not** record my build process.  
+The assignment requested a screen recording, but I did **not** record my build process due to laptop issue.  
 All other deliverables (GitHub repo, live URLs, local setup) are provided as required.
 
 ---
 
-## Local setup (one command)
+## 🚀 Local setup – one command to install, build, and start everything
 
 ```bash
-git clone https://github.com/yourusername/car-advisor-fullstack.git
-cd car-advisor-fullstack
-npm run setup   # installs deps for root, client, server
-npm run dev     # starts frontend (5173) + backend (5000)
+git clone https://github.com/yourusername/Car-Advisor-App.git
+cd Car-Advisor-App
+npm run start-all

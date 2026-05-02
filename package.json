@@ -2,16 +2,15 @@
   "name": "car-advisor",
   "version": "1.0.0",
   "private": true,
-  "workspaces": [
-    "backend",
-    "frontend"
-  ],
+  "workspaces": ["backend", "frontend"],
   "scripts": {
+    "start-all": "npm install && npm run build && npm run dev",
     "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
     "backend": "npm --workspace backend run dev",
     "frontend": "npm --workspace frontend run dev",
     "build": "npm --workspace backend run build && npm --workspace frontend run build",
-    "start": "npm --workspace backend run start"
+    "start": "npm --workspace backend run start",
+    "clean": "rm -rf backend/dist frontend/dist backend/node_modules frontend/node_modules node_modules"
   },
   "devDependencies": {
     "concurrently": "^8.0.0"
