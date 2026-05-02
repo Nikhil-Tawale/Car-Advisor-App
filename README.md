@@ -65,7 +65,5 @@ All other deliverables (GitHub repo, live URLs, local setup) are provided as req
 ## Local setup (one command)
 
 ```bash
-git clone https://github.com/yourusername/car-advisor-fullstack.git
-cd car-advisor-fullstack
-npm run setup   # installs deps for root, client, server
-npm run dev     # starts frontend (5173) + backend (5000)
+git clone https://github.com/yourusername/Car-Advisor-App.git
+cd Car-Advisor-App
