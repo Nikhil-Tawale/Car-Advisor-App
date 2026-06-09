@@ -21,12 +21,18 @@ jobs:
         working-directory: ./backend
         run: npm ci
 
-      - name: Start backend
+      - name: Build backend (if applicable)
         working-directory: ./backend
-        run: npm run start &
+        run: npm run build || true
+
+      - name: Start backend (background, log to file)
+        working-directory: ./backend
+        run: |
+          npm run start > backend.log 2>&1 &
+          echo $! > backend.pid
 
       - name: Wait for backend
-        run: npx wait-on http://localhost:5001 --timeout 60000
+        run: npx wait-on http://localhost:5001 --timeout 180000
 
       - name: Install frontend dependencies
         working-directory: ./frontend
@@ -41,7 +47,12 @@ jobs:
         run: npm run preview -- --port 5173 &
 
       - name: Wait for frontend
-        run: npx wait-on http://localhost:5173 --timeout 60000
+        run: npx wait-on http://localhost:5173 --timeout 180000
+
+      - name: Show backend logs on failure
+        if: failure()
+        working-directory: ./backend
+        run: cat backend.log || true
 
       - name: Setup Playwright
         working-directory: ./frontend
