@@ -28,7 +28,7 @@ jobs:
       - name: Start backend (background, log to file)
         working-directory: ./backend
         run: |
-          npm run start > backend.log 2>&1 &
+          nohup npm run start > backend.log 2>&1 &
           echo $! > backend.pid
 
       - name: Wait for backend
