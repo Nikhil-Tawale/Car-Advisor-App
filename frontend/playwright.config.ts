@@ -9,7 +9,8 @@ export default defineConfig({
   use: {
     actionTimeout: 0,
     trace: 'on-first-retry',
-    baseURL: 'http://localhost:5173'
+    baseURL: 'http://localhost:5175',
+    headless: true,
   },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } }
