@@ -69,3 +69,11 @@ jobs:
           name: playwright-report
           path: frontend/playwright-report/
           retention-days: 30
+
+      - name: Upload backend logs
+        uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: backend-log
+          path: backend/backend.log
+          retention-days: 7
