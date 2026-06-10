@@ -24,6 +24,10 @@ jobs:
         working-directory: ./frontend
         run: npm ci
 
+      - name: Setup Playwright browsers
+        working-directory: ./frontend
+        run: npx playwright install --with-deps
+
       - name: Build frontend
         working-directory: ./frontend
         run: npm run build
@@ -73,10 +77,6 @@ jobs:
           echo "Frontend is ready"
 
       # ----- Playwright tests -----
-      - name: Setup Playwright
-        working-directory: ./frontend
-        run: npx playwright install --with-deps
-
       - name: Run Playwright tests
         working-directory: ./frontend
         run: npx playwright test
