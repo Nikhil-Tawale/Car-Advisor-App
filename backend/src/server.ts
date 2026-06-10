@@ -24,7 +24,7 @@ const init = async () => {
       directory: {
         // Adjust this path: from backend/src/ go up two levels to project root,
         // then into frontend/dist
-        path: path.join(__dirname, '../../frontend/dist'),
+        path: path.join(process.cwd(), 'frontend/dist'),
         redirectToSlash: true,
         index: true
       }
