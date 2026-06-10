@@ -63,9 +63,9 @@ jobs:
       - name: Start frontend preview server
         working-directory: ./frontend
         run: |
-          nohup node node_modules/.bin/vite preview --port 5175 > frontend.log 2>&1 &
+          nohup npx serve dist --listen 5175 > frontend.log 2>&1 &
           sleep 3
-          echo "Frontend preview process started"
+          echo "Frontend preview server started"
 
       - name: Wait for frontend preview server
         run: |
