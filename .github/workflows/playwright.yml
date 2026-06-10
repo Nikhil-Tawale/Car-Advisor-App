@@ -79,7 +79,7 @@ jobs:
       # ----- Playwright tests -----
       - name: Run Playwright tests
         working-directory: ./frontend
-        run: npx playwright test
+        run: npm run test:e2e 
 
       # ----- Upload artifacts (always) -----
       - name: Upload Playwright report
