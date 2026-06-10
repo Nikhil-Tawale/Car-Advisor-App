@@ -62,7 +62,10 @@ jobs:
       # ----- Frontend preview server for Playwright -----
       - name: Start frontend preview server
         working-directory: ./frontend
-        run: npx vite preview --port 5175 > frontend.log 2>&1 &
+        run: |
+          nohup npm run preview -- --port 5175 > frontend.log 2>&1 &
+          sleep 2
+          echo "Frontend preview process started"
 
       - name: Wait for frontend preview server
         run: |
