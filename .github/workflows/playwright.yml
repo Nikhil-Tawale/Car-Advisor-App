@@ -35,16 +35,24 @@ jobs:
 
       - name: Build backend
         working-directory: ./backend
-        run: npm run build   # removed '|| true' – fail early if build fails
+        run: npm run build
 
       - name: Start backend (background, log to file)
         working-directory: ./backend
         run: |
           nohup npm run start > backend.log 2>&1 &
-          echo $! > backend.pid
+          sleep 2
+          echo "Backend process started"
 
       - name: Wait for backend (root endpoint)
-        run: npx wait-on http://localhost:5001 --timeout 60000
+        run: |
+          npx wait-on http://localhost:5001 --timeout 60000 --verbose
+          echo "Backend is ready"
+
+      - name: Verify backend is accessible
+        run: |
+          curl -v http://localhost:5001/ || echo "Initial check failed, waiting..."
+          sleep 2
 
       - name: Show backend logs on failure
         if: failure()
@@ -54,10 +62,12 @@ jobs:
       # ----- Frontend preview server for Playwright -----
       - name: Start frontend preview server
         working-directory: ./frontend
-        run: npm run preview -- --port 5173 &
+        run: npm run preview -- --port 5175 > frontend.log 2>&1 &
 
-      - name: Wait for frontend
-        run: npx wait-on http://localhost:5173 --timeout 180000
+      - name: Wait for frontend preview server
+        run: |
+          npx wait-on http://localhost:5175 --timeout 180000 --verbose
+          echo "Frontend is ready"
 
       # ----- Playwright tests -----
       - name: Setup Playwright
@@ -83,4 +93,12 @@ jobs:
         with:
           name: backend-log
           path: backend/backend.log
+          retention-days: 7
+
+      - name: Upload frontend logs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: frontend-log
+          path: frontend/frontend.log
           retention-days: 7
